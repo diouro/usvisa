@@ -1,0 +1,31 @@
+2022-06-15 22:57:40,115 INFO     start sign
+2022-06-15 22:57:43,036 INFO     click bounce
+2022-06-15 22:57:44,107 INFO     input email
+2022-06-15 22:57:46,304 INFO     input pwd
+2022-06-15 22:57:49,393 INFO     click privacy
+2022-06-15 22:57:51,461 INFO     commit
+2022-06-15 22:57:56,720 INFO     Login successfully!
+2022-06-15 22:57:56,720 INFO     2022-06-15 22:57:56.720321
+2022-06-15 22:57:56,720 INFO     ------------------
+2022-06-15 22:57:57,171 INFO     
+
+2022-06-17 22:27:57,526 INFO     start sign
+2022-06-17 22:28:00,517 INFO     click bounce
+2022-06-17 22:28:01,588 INFO     input email
+2022-06-17 22:28:04,811 INFO     input pwd
+2022-06-17 22:28:06,912 INFO     click privacy
+2022-06-17 22:28:08,975 INFO     commit
+2022-06-17 22:28:12,048 INFO     Login successfully!
+2022-06-17 22:28:12,048 INFO     2022-06-17 22:28:12.048683
+2022-06-17 22:28:12,621 INFO     2023-07-17 	 business_day: True
+2022-06-17 22:28:12,621 INFO     2023-07-24 	 business_day: True
+2022-06-17 22:28:12,622 INFO     2023-07-25 	 business_day: True
+2022-06-17 22:28:12,622 INFO     2023-07-27 	 business_day: True
+2022-06-17 22:28:12,622 INFO     2023-07-28 	 business_day: True
+2022-06-17 22:28:12,622 INFO     
+
+2022-06-17 22:28:12,622 INFO     Start Reschedule
+2022-06-17 22:28:12,622 INFO     get_time
+2022-06-17 22:28:13,043 INFO     content
+2022-06-17 22:28:13,043 INFO     Get time successfully!
+2022-06-17 22:28:14,552 INFO     Confirm reschedule
