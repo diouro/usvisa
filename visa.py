@@ -1,3 +1,4 @@
+import os
 import logging
 import time
 import json
@@ -17,11 +18,12 @@ PASSWORD = '10302011'
 SCHEDULE = '39739222'
 COUNTRY_CODE = 'en-br'  # en-ca for Canada-English
 # FACILITY_ID = '55'  # 94 for Toronto (others please use F12 to check)
-FACILITY_IDS = [55,56,57,128] # Rio de janeiro, Sao Paulo, Recife, Porto Alegre
+FACILITY_IDS = [(55, 'Rio de Janeiro'),(56, 'Sao Paulo'),(57,'Recife'),(128, 'Port Alegre')]
 MY_SCHEDULE_DATE = "2023-04-19"  # 2022-05-16 WARNING: DON'T CHOOSE DATE LATER THAN ACTUAL SCHEDULED
 MY_CONDITION = lambda month, day: True  # MY_CONDITION = lambda month, day: int(month) == 11 and int(day) >= 5
 
 SLEEP_TIME = 60   # recheck time interval
+INFINITE = 1 # play sound forever
 
 DATE_URL = f"https://ais.usvisa-info.com/{COUNTRY_CODE}/niv/schedule/{SCHEDULE}/appointment/days/%s.json?appointments[expedite]=false"
 TIME_URL = f"https://ais.usvisa-info.com/{COUNTRY_CODE}/niv/schedule/{SCHEDULE}/appointment/times/%s.json?date=%s&appointments[expedite]=false"
@@ -189,7 +191,7 @@ if __name__ == "__main__":
         if retry_count > 6:
             break
         try:
-            for f in FACILITY_IDS:
+            for f,name in FACILITY_IDS:
                 logging.info(datetime.today())
                 logging.info(f"FacilityId %s" % f)
                 logging.info("------------------")
@@ -199,10 +201,13 @@ if __name__ == "__main__":
                 date = get_available_date(dates)
                 if date:
                     reschedule(date, f)
+                    while INFINITE:
+                        os.system('say ' + f"There is a new schedule available in the facility %s at %s " % (f,name))
 
                 if(EXIT):
                     break
-
+                
+                os.system('say ' + f"There was no date available in the facility %s at %s " % (f,name))
                 time.sleep(SLEEP_TIME)
                 retry_count += 1
         except:
