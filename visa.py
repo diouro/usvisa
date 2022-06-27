@@ -208,7 +208,7 @@ if __name__ == "__main__":
                 if(EXIT):
                     break
                 
-                os.system('say ' + f"There was no date available in the facility %s at %s " % (f,name))
+                # os.system('say ' + f"There was no date available in the facility %s at %s " % (f,name))
                 time.sleep(SLEEP_TIME)
                 retry_count += 1
         except:
