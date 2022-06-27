@@ -1,31 +1,75 @@
-2022-06-15 22:57:40,115 INFO     start sign
-2022-06-15 22:57:43,036 INFO     click bounce
-2022-06-15 22:57:44,107 INFO     input email
-2022-06-15 22:57:46,304 INFO     input pwd
-2022-06-15 22:57:49,393 INFO     click privacy
-2022-06-15 22:57:51,461 INFO     commit
-2022-06-15 22:57:56,720 INFO     Login successfully!
-2022-06-15 22:57:56,720 INFO     2022-06-15 22:57:56.720321
-2022-06-15 22:57:56,720 INFO     ------------------
-2022-06-15 22:57:57,171 INFO     
+2022-06-27 22:07:04,652 INFO     start sign
+2022-06-27 22:07:07,624 INFO     click bounce
+2022-06-27 22:07:08,746 INFO     input email
+2022-06-27 22:07:09,917 INFO     input pwd
+2022-06-27 22:07:12,996 INFO     click privacy
+2022-06-27 22:07:14,067 INFO     commit
+2022-06-27 22:07:19,177 INFO     Login successfully!
+2022-06-27 22:07:19,177 INFO     2022-06-27 22:07:19.177713
+2022-06-27 22:08:32,974 INFO     start sign
+2022-06-27 22:08:36,016 INFO     click bounce
+2022-06-27 22:08:37,107 INFO     input email
+2022-06-27 22:08:39,287 INFO     input pwd
+2022-06-27 22:08:41,377 INFO     click privacy
+2022-06-27 22:08:44,458 INFO     commit
+2022-06-27 22:08:48,410 INFO     Login successfully!
+2022-06-27 22:08:48,410 INFO     2022-06-27 22:08:48.410687
+2022-06-27 22:08:48,410 INFO     FacilityId 55
+2022-06-27 22:08:48,410 INFO     ------------------
+2022-06-27 22:08:49,023 INFO     2023-09-11 	 business_day: True
+2022-06-27 22:08:49,023 INFO     2023-09-14 	 business_day: True
+2022-06-27 22:08:49,024 INFO     2023-09-15 	 business_day: True
+2022-06-27 22:08:49,024 INFO     2023-09-18 	 business_day: True
+2022-06-27 22:08:49,024 INFO     2023-09-19 	 business_day: True
+2022-06-27 22:08:49,024 INFO     
 
-2022-06-17 22:27:57,526 INFO     start sign
-2022-06-17 22:28:00,517 INFO     click bounce
-2022-06-17 22:28:01,588 INFO     input email
-2022-06-17 22:28:04,811 INFO     input pwd
-2022-06-17 22:28:06,912 INFO     click privacy
-2022-06-17 22:28:08,975 INFO     commit
-2022-06-17 22:28:12,048 INFO     Login successfully!
-2022-06-17 22:28:12,048 INFO     2022-06-17 22:28:12.048683
-2022-06-17 22:28:12,621 INFO     2023-07-17 	 business_day: True
-2022-06-17 22:28:12,621 INFO     2023-07-24 	 business_day: True
-2022-06-17 22:28:12,622 INFO     2023-07-25 	 business_day: True
-2022-06-17 22:28:12,622 INFO     2023-07-27 	 business_day: True
-2022-06-17 22:28:12,622 INFO     2023-07-28 	 business_day: True
-2022-06-17 22:28:12,622 INFO     
+2022-06-27 22:09:49,023 INFO     2022-06-27 22:09:49.023883
+2022-06-27 22:09:49,024 INFO     FacilityId 56
+2022-06-27 22:09:49,024 INFO     ------------------
+2022-06-27 22:09:49,514 INFO     2023-08-15 	 business_day: True
+2022-06-27 22:09:49,514 INFO     2023-08-17 	 business_day: True
+2022-06-27 22:09:49,514 INFO     2023-08-18 	 business_day: True
+2022-06-27 22:09:49,514 INFO     2023-08-21 	 business_day: True
+2022-06-27 22:09:49,514 INFO     2023-08-22 	 business_day: True
+2022-06-27 22:09:49,514 INFO     
 
-2022-06-17 22:28:12,622 INFO     Start Reschedule
-2022-06-17 22:28:12,622 INFO     get_time
-2022-06-17 22:28:13,043 INFO     content
-2022-06-17 22:28:13,043 INFO     Get time successfully!
-2022-06-17 22:28:14,552 INFO     Confirm reschedule
+2022-06-27 22:10:49,514 INFO     2022-06-27 22:10:49.514475
+2022-06-27 22:10:49,514 INFO     FacilityId 57
+2022-06-27 22:10:49,514 INFO     ------------------
+2022-06-27 22:10:49,976 INFO     2023-05-15 	 business_day: True
+2022-06-27 22:10:49,977 INFO     2023-05-16 	 business_day: True
+2022-06-27 22:10:49,977 INFO     2023-05-18 	 business_day: True
+2022-06-27 22:10:49,977 INFO     2023-05-19 	 business_day: True
+2022-06-27 22:10:49,977 INFO     2023-05-22 	 business_day: True
+2022-06-27 22:10:49,977 INFO     
+
+2022-06-27 22:11:49,979 INFO     2022-06-27 22:11:49.979264
+2022-06-27 22:11:49,979 INFO     FacilityId 128
+2022-06-27 22:11:49,979 INFO     ------------------
+2022-06-27 22:11:50,430 INFO     2023-08-03 	 business_day: True
+2022-06-27 22:11:50,430 INFO     2023-08-04 	 business_day: True
+2022-06-27 22:11:50,430 INFO     2023-08-07 	 business_day: True
+2022-06-27 22:11:50,430 INFO     2023-08-08 	 business_day: True
+2022-06-27 22:11:50,430 INFO     2023-08-10 	 business_day: True
+2022-06-27 22:11:50,430 INFO     
+
+2022-06-27 22:12:50,432 INFO     2022-06-27 22:12:50.432422
+2022-06-27 22:12:50,432 INFO     FacilityId 55
+2022-06-27 22:12:50,432 INFO     ------------------
+2022-06-27 22:12:50,924 INFO     2023-09-11 	 business_day: True
+2022-06-27 22:12:50,924 INFO     2023-09-14 	 business_day: True
+2022-06-27 22:12:50,924 INFO     2023-09-15 	 business_day: True
+2022-06-27 22:12:50,924 INFO     2023-09-18 	 business_day: True
+2022-06-27 22:12:50,924 INFO     2023-09-19 	 business_day: True
+2022-06-27 22:12:50,924 INFO     
+
+2022-06-27 22:13:50,926 INFO     2022-06-27 22:13:50.926192
+2022-06-27 22:13:50,926 INFO     FacilityId 56
+2022-06-27 22:13:50,926 INFO     ------------------
+2022-06-27 22:13:51,388 INFO     2023-08-15 	 business_day: True
+2022-06-27 22:13:51,388 INFO     2023-08-17 	 business_day: True
+2022-06-27 22:13:51,389 INFO     2023-08-18 	 business_day: True
+2022-06-27 22:13:51,389 INFO     2023-08-21 	 business_day: True
+2022-06-27 22:13:51,389 INFO     2023-08-22 	 business_day: True
+2022-06-27 22:13:51,389 INFO     
+

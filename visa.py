@@ -16,15 +16,15 @@ USERNAME = 'deliopimenta@hotmail.com'
 PASSWORD = '10302011'
 SCHEDULE = '39739222'
 COUNTRY_CODE = 'en-br'  # en-ca for Canada-English
-FACILITY_ID = '55'  # 94 for Toronto (others please use F12 to check)
-
-MY_SCHEDULE_DATE = "2023-07-20"  # 2022-05-16 WARNING: DON'T CHOOSE DATE LATER THAN ACTUAL SCHEDULED
+# FACILITY_ID = '55'  # 94 for Toronto (others please use F12 to check)
+FACILITY_IDS = [55,56,57,128] # Rio de janeiro, Sao Paulo, Recife, Porto Alegre
+MY_SCHEDULE_DATE = "2023-04-19"  # 2022-05-16 WARNING: DON'T CHOOSE DATE LATER THAN ACTUAL SCHEDULED
 MY_CONDITION = lambda month, day: True  # MY_CONDITION = lambda month, day: int(month) == 11 and int(day) >= 5
 
 SLEEP_TIME = 60   # recheck time interval
 
-DATE_URL = f"https://ais.usvisa-info.com/{COUNTRY_CODE}/niv/schedule/{SCHEDULE}/appointment/days/{FACILITY_ID}.json?appointments[expedite]=false"
-TIME_URL = f"https://ais.usvisa-info.com/{COUNTRY_CODE}/niv/schedule/{SCHEDULE}/appointment/times/{FACILITY_ID}.json?date=%s&appointments[expedite]=false"
+DATE_URL = f"https://ais.usvisa-info.com/{COUNTRY_CODE}/niv/schedule/{SCHEDULE}/appointment/days/%s.json?appointments[expedite]=false"
+TIME_URL = f"https://ais.usvisa-info.com/{COUNTRY_CODE}/niv/schedule/{SCHEDULE}/appointment/times/%s.json?date=%s&appointments[expedite]=false"
 
 APPOINTMENT_URL = f"https://ais.usvisa-info.com/{COUNTRY_CODE}/niv/schedule/{SCHEDULE}/appointment"
 EXIT = False
@@ -84,8 +84,9 @@ def do_login_action():
         login()
 
 
-def get_date():
-    driver.get(DATE_URL)
+def get_date(facilityId):
+    date_url = DATE_URL % facilityId
+    driver.get(date_url)
     if not is_logined():
         login()
         return get_date()
@@ -95,8 +96,8 @@ def get_date():
         return date
 
 
-def get_time(date):
-    time_url = TIME_URL % date
+def get_time(date, facilityId):
+    time_url = TIME_URL % (facilityId,date)
     logging.info("get_time")
     driver.get(time_url)
     content = driver.find_element(By.TAG_NAME, value='pre').text
@@ -108,25 +109,26 @@ def get_time(date):
 
 
 # BUGGY
-def reschedule(date):
+def reschedule(date, facilityId):
     global EXIT
     logging.info("Start Reschedule")
 
-    availableTime = get_time(date)
+    availableTime = get_time(date, facilityId)
+    if not availableTime : return # no time available don't proceed
+    
+    # # # NEW STEP:: confirm reschedule appointment
+    # logging.info("Confirm reschedule")
+    # btn = driver.find_element(By.NAME, value='commit')
+    # btn.click()
+    # time.sleep(random.randint(1, 3))
+    
     driver.get(APPOINTMENT_URL)
-
-    # # NEW STEP:: confirm reschedule appointment
-    logging.info("Confirm reschedule")
-    btn = driver.find_element(By.NAME, value='commit')
-    btn.click()
-    time.sleep(random.randint(1, 3))
-
     data = {
         "utf8": driver.find_element(By.NAME, value='utf8').get_attribute('value'),
         "authenticity_token": driver.find_element(By.NAME, value='authenticity_token').get_attribute('value'),
         "confirmed_limit_message": driver.find_element(By.NAME, value='confirmed_limit_message').get_attribute('value'),
         "use_consulate_appointment_capacity": driver.find_element(By.NAME, value='use_consulate_appointment_capacity').get_attribute('value'),
-        "appointments[consulate_appointment][facility_id]": FACILITY_ID,
+        "appointments[consulate_appointment][facility_id]": facilityId,
         "appointments[consulate_appointment][date]": date,
         "appointments[consulate_appointment][time]": availableTime,
     }
@@ -182,23 +184,27 @@ def get_available_date(dates):
 if __name__ == "__main__":
     login()
     retry_count = 0
+
     while 1:
         if retry_count > 6:
             break
         try:
-            logging.info(datetime.today())
-            logging.info("------------------")
+            for f in FACILITY_IDS:
+                logging.info(datetime.today())
+                logging.info(f"FacilityId %s" % f)
+                logging.info("------------------")
 
-            dates = get_date()[:5]
-            print_date(dates)
-            date = get_available_date(dates)
-            if date:
-                reschedule(date)
+                dates = get_date(f)[:5]
+                print_date(dates)
+                date = get_available_date(dates)
+                if date:
+                    reschedule(date, f)
 
-            if(EXIT):
-                break
+                if(EXIT):
+                    break
 
-            time.sleep(SLEEP_TIME)
+                time.sleep(SLEEP_TIME)
+                retry_count += 1
         except:
             retry_count += 1
             time.sleep(60*5)
