@@ -23,7 +23,7 @@ MY_SCHEDULE_DATE = "2023-04-19"  # 2022-05-16 WARNING: DON'T CHOOSE DATE LATER T
 MY_CONDITION = lambda month, day: True  # MY_CONDITION = lambda month, day: int(month) == 11 and int(day) >= 5
 
 SLEEP_TIME = 60   # recheck time interval
-INFINITE = 1 # play sound forever
+DEEP_SLEEP_TIME = 60 * 5   # recheck time interval
 
 DATE_URL = f"https://ais.usvisa-info.com/{COUNTRY_CODE}/niv/schedule/{SCHEDULE}/appointment/days/%s.json?appointments[expedite]=false"
 TIME_URL = f"https://ais.usvisa-info.com/{COUNTRY_CODE}/niv/schedule/{SCHEDULE}/appointment/times/%s.json?date=%s&appointments[expedite]=false"
@@ -189,7 +189,8 @@ if __name__ == "__main__":
 
     while 1:
         if retry_count > 6:
-            break
+            time.sleep(DEEP_SLEEP_TIME) # wait x minutes to try again
+            retry_count = 0;
         try:
             for f,name in FACILITY_IDS:
                 logging.info(datetime.today())
@@ -201,7 +202,7 @@ if __name__ == "__main__":
                 date = get_available_date(dates)
                 if date:
                     reschedule(date, f)
-                    while INFINITE:
+                    while 1:
                         os.system('say ' + f"There is a new schedule available in the facility %s at %s " % (f,name))
 
                 if(EXIT):
@@ -209,7 +210,6 @@ if __name__ == "__main__":
                 
                 os.system('say ' + f"There was no date available in the facility %s at %s " % (f,name))
                 time.sleep(SLEEP_TIME)
-                retry_count += 1
         except:
-            retry_count += 1
-            time.sleep(60*5)
+            time.sleep(DEEP_SLEEP_TIME) # something went wrong, wait x minutes to try again
+            retry_count = 0
