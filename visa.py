@@ -210,6 +210,7 @@ if __name__ == "__main__":
                 
                 os.system('say ' + f"There was no date available in the facility %s at %s " % (f,name))
                 time.sleep(SLEEP_TIME)
+                retry_count += 1
         except:
             time.sleep(DEEP_SLEEP_TIME) # something went wrong, wait x minutes to try again
             retry_count = 0
