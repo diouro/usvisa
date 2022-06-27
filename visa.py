@@ -19,11 +19,12 @@ SCHEDULE = '39739222'
 COUNTRY_CODE = 'en-br'  # en-ca for Canada-English
 # FACILITY_ID = '55'  # 94 for Toronto (others please use F12 to check)
 FACILITY_IDS = [(55, 'Rio de Janeiro'),(56, 'Sao Paulo'),(57,'Recife'),(128, 'Port Alegre')]
+MINIMUM_SCHEDULE_DATE = "2022-07-31"  # 2022-05-16 WARNING: DON'T CHOOSE DATE LATER THAN ACTUAL SCHEDULED
 MY_SCHEDULE_DATE = "2023-04-19"  # 2022-05-16 WARNING: DON'T CHOOSE DATE LATER THAN ACTUAL SCHEDULED
 MY_CONDITION = lambda month, day: True  # MY_CONDITION = lambda month, day: int(month) == 11 and int(day) >= 5
 
 SLEEP_TIME = 60   # recheck time interval
-DEEP_SLEEP_TIME = 60 * 5   # recheck time interval
+DEEP_SLEEP_TIME = 60*5   # recheck time interval
 
 DATE_URL = f"https://ais.usvisa-info.com/{COUNTRY_CODE}/niv/schedule/{SCHEDULE}/appointment/days/%s.json?appointments[expedite]=false"
 TIME_URL = f"https://ais.usvisa-info.com/{COUNTRY_CODE}/niv/schedule/{SCHEDULE}/appointment/times/%s.json?date=%s&appointments[expedite]=false"
@@ -106,7 +107,6 @@ def get_time(date, facilityId):
     logging.info("content")
     data = json.loads(content)
     time = data.get("available_times")[-1]
-    logging.info("Get time successfully!")
     return time
 
 
@@ -118,6 +118,7 @@ def reschedule(date, facilityId):
     availableTime = get_time(date, facilityId)
     if not availableTime : return # no time available don't proceed
     
+    logging.info("Get time successfully!")
     # # # NEW STEP:: confirm reschedule appointment
     # logging.info("Confirm reschedule")
     # btn = driver.find_element(By.NAME, value='commit')
@@ -174,9 +175,12 @@ def get_available_date(dates):
     def is_earlier(date):
         return datetime.strptime(MY_SCHEDULE_DATE, "%Y-%m-%d") > datetime.strptime(date, "%Y-%m-%d")
 
+    def is_after(date):
+        return datetime.strptime(MINIMUM_SCHEDULE_DATE, "%Y-%m-%d") < datetime.strptime(date, "%Y-%m-%d")
+
     for d in dates:
         date = d.get('date')
-        if is_earlier(date) and date != last_seen:
+        if is_earlier(date) and is_after(date) and date != last_seen:
             _, month, day = date.split('-')
             if(MY_CONDITION(month, day)):
                 last_seen = date
