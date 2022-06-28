@@ -208,6 +208,7 @@ if __name__ == "__main__":
                     reschedule(date, f)
                     while 1:
                         os.system('say ' + f"There is a new schedule available in the facility %s at %s " % (f,name))
+                        time.sleep(5)
 
                 if(EXIT):
                     break
